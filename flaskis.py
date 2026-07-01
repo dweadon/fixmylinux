@@ -1,8 +1,7 @@
-from flask import Flask, request
+from flask import Flask, request, send_file
 import requests
 import os
 from flask_cors import CORS
-
 
 app = Flask(__name__)
 CORS(app)
@@ -10,6 +9,10 @@ CORS(app)
 SYSTEM_PROMPT = "You are a Linux expert. Help users fix their Linux problems. Be clear and concise. You can also answer in many different languages based on input from user language"
 
 GROQ_API_KEY = os.environ.get("GROQ_API_KEY")
+
+@app.route("/")
+def home():
+    return send_file("skeleton.html")
 
 @app.route("/save", methods=["POST"])
 def save():
