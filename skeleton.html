@@ -62,7 +62,7 @@
  async function askAI(event) {
     event.preventDefault()
     const problem = document.getElementById("problem").value
-    const response = await fetch("http://127.0.0.1:5000/ask", {
+    const response = await fetch("https://fixmylinux-production.up.railway.app/ask", {
         method: "POST",
         body: new FormData(document.querySelector("form"))
     })
