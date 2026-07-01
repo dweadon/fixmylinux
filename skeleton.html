@@ -251,4 +251,21 @@ button:hover {
 </main>
 
 </body>
+<script>
+
+async function askAI(event) {
+    event.preventDefault()
+
+    const response = await fetch("/ask", {
+        method: "POST",
+        body: new FormData(document.getElementById("askform"))
+    })
+
+    const answer = await response.text()
+
+    document.getElementById("answer").style.display = "block";
+    document.getElementById("answer").innerHTML = answer;
+}
+
+</script>
 </html>
