@@ -20,7 +20,11 @@ def save():
     with open("problems.txt", "a") as f:
         f.write(text + "\n")
     return "Saved"
-
+@app.route("/faq", methods=["GET"])
+def faq():
+    with open("faq.txt", "r") as g:
+        faqs = g.read()
+    return faqs
 @app.route("/ask", methods=["POST"])
 def ask():
     user_problem = request.form["problem"]

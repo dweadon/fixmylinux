@@ -45,6 +45,11 @@
       border: none;
       border-radius: 8px;
     }
+  .faq-link {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+  }
   </style>
   <title>FixMyLinux</title>
 </head>
@@ -53,24 +58,26 @@
     <img src="/static/tuix.png" alt="tux">
     <h1>FixMyLinux</h1>
   </div>  
+<a class="faq-link" href="https://fixmylinux-production.up.railway.app/faq">Check out our FAQ section</a>
 
-  <form action="http://127.0.0.1:5000/ask" method="POST">
-    <textarea id="problem" name="problem" placeholder="Paste your Linux problem here..."></textarea>
-    <button type="button" onclick="askAI(event)">Fix it!</button>
-    <div id="answer"></div>
-  </form>
-  <script>
- async function askAI(event) {
+<form id="askform" action="https://fixmylinux-production.up.railway.app/ask" method="POST">
+  <textarea id="problem" name="problem" placeholder="Paste your Linux problem here..."></textarea>
+  <button type="button" onclick="askAI(event)">Fix it!</button>
+  <div id="answer"></div>
+</form>
+
+<script>
+  async function askAI(event) {
     event.preventDefault()
     const problem = document.getElementById("problem").value
-    const response = await fetch("/ask", {
-        method: "POST",
-        body: new FormData(document.querySelector("form"))
+
+    const response = await fetch("https://fixmylinux-production.up.railway.app/ask", {
+      method: "POST",
+      body: new FormData(document.getElementById("askform"))
     })
     const answer = await response.text()
     document.getElementById("answer").innerHTML = answer
-}
-
-  </script>
+  }
+</script>
 </body>
 </html>
