@@ -50,6 +50,11 @@
     bottom: 20px;
     left: 20px;
   }
+  .feedback {
+	position: fixed;
+	bottom: 20px;
+	left: 90px;
+}
   </style>
   <title>FixMyLinux</title>
 </head>
@@ -59,7 +64,12 @@
     <h1>FixMyLinux</h1>
   </div>  
 <a class="faq-link" href="https://fixmylinux.up.railway.app/faq" style="color: grey;">Check out our FAQ section</a>
-
+<a class="feedback" href="https://fixmylinux.up.railway.app/feed" style="color: grey;">Have an idea or feedback?</a>
+<form id="feed" action="https://fixmylinux.up.railway.app/feed" method="POST">
+  <textarea id="feedback" name="feedback" placeholder="Write your feedback here..."></textarea> 
+  <button type="button" onclick="sendFeedback(event)">Send</button>
+  <div id="feedresult"></div>
+</form>
 <form id="askform" action="https://fixmylinux.up.railway.app/ask" method="POST">
   <textarea id="problem" name="problem" placeholder="Paste your Linux problem here..."></textarea>
   <button type="button" onclick="askAI(event)">Fix it!</button>
@@ -67,6 +77,7 @@
 </form>
 
 <script>
+
   async function askAI(event) {
     event.preventDefault()
     const problem = document.getElementById("problem").value
@@ -77,7 +88,17 @@
     })
     const answer = await response.text()
     document.getElementById("answer").innerHTML = answer
-  }
+ 
+ }
+   async function sendFeedback(event) {
+    event.preventDefault()
+    const response = await fetch("/feed", {
+        method: "POST",
+        body: new FormData(document.getElementById("feed"))
+    })
+    const result = await response.text()
+    document.getElementById("feedresult").innerHTML = result
+}
 </script>
 </body>
 </html>
