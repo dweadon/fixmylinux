@@ -1,5 +1,5 @@
 Q: What is FixMyLinux?
-A: FixMyLinux is a free AI-powered tool to help you fix Linux problems.
+A: FixMyLinux is a small web platform designed to help users diagnose and solve common Linux problems. Rather than being a script or command-line tool, it's a lightweight website: users can browse or search for known Linux issues and find guidance on how to fix them.
 
 Q: How do I use it?
 A: Just paste your Linux problem in the text box and click Fix it!
