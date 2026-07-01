@@ -3,97 +3,252 @@
 <head>
   <link rel="icon" type="image/png" href="/static/imresizer-linux-from-scratch-83.jpg">
   <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
-  <style>
-    
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Inter, sans-serif;
+    background: #121212;
+    color: #fff;
+}
+
+/* Header */
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 20px 40px;
+
+    border-bottom: 1px solid #2a2a2a;
+}
+
+.logo-section {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.logo-section img {
+    width: 42px;
+}
+
+.logo-section h1 {
+    font-size: 1.8rem;
+    font-weight: 700;
+}
+
+nav {
+    display: flex;
+    gap: 24px;
+}
+
+nav a {
+    text-decoration: none;
+    color: #b3b3b3;
+}
+
+nav a:hover {
+    color: white;
+}
+
+/* Main */
+
+.hero {
+    max-width: 900px;
+    margin: 60px auto;
+    padding: 0 20px;
+}
+
+.hero-content {
+    margin-bottom: 35px;
+}
+
+.hero-content h2 {
+    font-size: 2.7rem;
+    font-weight: 700;
+    margin-bottom: 12px;
+}
+
+.hero-content p {
+    color: #b3b3b3;
+    line-height: 1.7;
+}
+
+/* Form */
+
+#askform {
+    background: #181818;
+
+    border: 1px solid #2d2d2d;
+    border-radius: 12px;
+
+    padding: 24px;
+}
+
+textarea {
+    width: 100%;
+    min-height: 250px;
+
+    background: #111111;
+    color: white;
+
+    border: 1px solid #2d2d2d;
+    border-radius: 10px;
+
+    padding: 16px;
+
+    resize: vertical;
+
+    font-size: 15px;
+}
+
+textarea:focus {
+    outline: none;
+    border-color: #444;
+}
+
+textarea::placeholder {
+    color: #888;
+}
+
+/* Button */
+
+button {
+    margin-top: 18px;
+
+    background: #1DB954;
+    color: black;
+
+    border: none;
+    border-radius: 8px;
+
+    padding: 12px 28px;
+
+    font-weight: 600;
+    font-size: 15px;
+
+    cursor: pointer;
+}
+
+button:hover {
+    filter: brightness(1.08);
+}
+
+/* Answer */
+
+#answer {
+    margin-top: 24px;
+
+    display: none;
+
+    background: #111111;
+
+    border: 1px solid #2d2d2d;
+    border-radius: 10px;
+
+    padding: 18px;
+
+    white-space: pre-wrap;
+
+    font-family: "JetBrains Mono", monospace;
+
+    line-height: 1.7;
+}
+
+/* Mobile */
+.version-badge {
+    position: fixed;
+    bottom: 16px;
+    right: 16px;
+
+    background: #181818;
+    border: 1px solid #2d2d2d;
+
+    color: #b3b3b3;
+
+    padding: 6px 10px;
+    border-radius: 8px;
+
+    font-size: 12px;
+    font-weight: 500;
+}
+
+@media (max-width: 768px) {
+
     .header {
-      background-color: blanchedalmond;
-      display: flex;
-      align-items: center;
-      padding: 10px;
-    }
-    .header img {
-      width: 80px;
+        padding: 18px;
     }
 
-    .header h1 {
-      color: darkred;
-      margin: 0;
+    nav {
+        gap: 14px;
     }
-    textarea{
-      display: block;
-      margin: 0 auto;
-      cursor: pointer;
-      border: 2px solid black;
-      border-radius: 8px;
-      
+
+    .hero-content h2 {
+        font-size: 2rem;
     }
-        
-    #answer {
-      margin: 200px auto;
-      width: 50%;
-      font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; /* change this */
-      font-size: 18px;
-      white-space: pre-wrap;
+
+    #askform {
+        padding: 18px;
     }
-    button {
-      display: block;
-      margin: 0 auto;
-      color: black;
-      font-size: 30px;
-      font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-      cursor: pointer;
-      border: none;
-      border-radius: 8px;
-    }
-  .faq-link {
-    position: fixed;
-    bottom: 20px;
-    left: 20px;
-  }
-  .feedback {
-	position: fixed;
-	bottom: 20px;
-	left: 2350px;
 }
-  </style>
+
+
+</style>
   <title>FixMyLinux</title>
 </head>
 <body>
-<div class="header">
-    <img src="/static/tuix.png" alt="tux">
-    <h1>FixMyLinux</h1>
-  </div>  
-<a class="faq-link" href="https://fixmylinux.up.railway.app/faq" style="color: grey;">Check out our FAQ section</a>
-<a class="feedback" href="https://fixmylinux.up.railway.app/feed" style="color: grey;">Have an idea or feedback?</a>
-<form id="askform" action="https://fixmylinux.up.railway.app/ask" method="POST">
-  <textarea id="problem" name="problem" rows="10" cols="80" placeholder="Paste your Linux problem here..."></textarea>
-  <button type="button" onclick="askAI(event)">Fix it!</button>
-  <div id="answer"></div>
-</form>
 
-<script>
 
-  async function askAI(event) {
-    event.preventDefault()
-    const problem = document.getElementById("problem").value
+<header class="header">
+    <div class="logo-section">
+        <img src="/static/tuix.png" alt="tux">
+        <h1>FixMyLinux</h1>
+    </div>
 
-    const response = await fetch("/ask", {
-      method: "POST",
-      body: new FormData(document.getElementById("askform"))
-    })
-    const answer = await response.text()
-    document.getElementById("answer").innerHTML = answer
- 
- }
-   async function sendFeedback(event) {
-    event.preventDefault()
-    const response = await fetch("/feed", {
-        method: "POST",
-        body: new FormData(document.getElementById("feed"))
-    })
-    const result = await response.text()
-    document.getElementById("feedresult").innerHTML = result
-}
-</script>
+    <nav>
+        <a href="/faq">FAQ</a>
+        <a href="/feed">Feedback</a>
+    </nav>
+</header>
+
+<main class="hero">
+
+    <div class="hero-content">
+        <h2>FixMyLinux</h2>
+
+        <p>
+            Paste an error message, boot log, kernel panic,
+            package issue, or terminal output and get help in seconds.
+        </p>
+        <div class="version-badge">
+            v2.0
+        </div>
+    </div>
+
+    <form id="askform" action="https://fixmylinux.up.railway.app/ask" method="POST">
+
+        <textarea
+            id="problem"
+            name="problem"
+            rows="10"
+            placeholder="Paste your Linux problem here..."
+        ></textarea>
+
+        <button type="button" onclick="askAI(event)">
+            Fix it!
+        </button>
+
+        <div id="answer"></div>
+
+    </form>
+
+</main>
+
 </body>
 </html>
