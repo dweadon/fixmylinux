@@ -6,7 +6,7 @@ from flask_cors import CORS
 app = Flask(__name__)
 CORS(app)
 
-SYSTEM_PROMPT = "You are a Linux expert. Help users fix their Linux problems. Be clear and concise. You can also answer in many different languages based on input from user language"
+SYSTEM_PROMPT = "You are a Linux expert. Help users fix their Linux problems. Be clear and concise. You can also answer in many different languages based on input from user language. Let your answers to be straight not lomg and only solutions, if questions accured you may ask them normally"
 
 GROQ_API_KEY = os.environ.get("GROQ_API_KEY")
 
