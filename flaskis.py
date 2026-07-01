@@ -22,9 +22,7 @@ def save():
     return "Saved"
 @app.route("/faq", methods=["GET"])
 def faq():
-    with open("faq.txt", "r") as g:
-        faqs = g.read()
-    return faqs
+    return send_file("faq.html")
 @app.route("/ask", methods=["POST"])
 def ask():
     user_problem = request.form["problem"]
