@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+  <style>
+    
+    .header {
+      background-color: blanchedalmond;
+      display: flex;
+      align-items: center;
+      padding: 10px;
+    }
+    .header img {
+      width: 80px;
+    }
+
+    .header h1 {
+      color: darkred;
+      margin: 0;
+    }
+    textarea{
+      display: block;
+      margin: 0 auto;
+      cursor: pointer;
+      border: 2px solid black;
+      border-radius: 8px;
+      
+    }
+        
+    #answer {
+      margin: 20px auto;
+      width: 50%;
+      font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; /* change this */
+      font-size: 18px;
+      white-space: pre-wrap;
+    }
+    button {
+      display: block;
+      margin: 0 auto;
+      color: black;
+      font-size: 30px;
+      font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+      cursor: pointer;
+      border: none;
+      border-radius: 8px;
+    }
+  </style>
+  <title>Document</title>
+</head>
+<body>
+<div class="header">
+    <img src="tuix.png" alt="tux">
+    <h1>FixMyLinux</h1>
+  </div>  
+
+  <form action="http://127.0.0.1:5000/ask" method="POST">
+    <textarea id="problem" name="problem" placeholder="Paste your Linux problem here..."></textarea>
+    <button type="button" onclick="askAI(event)">Fix it!</button>
+    <div id="answer"></div>
+  </form>
+  <script>
+ async function askAI(event) {
+    event.preventDefault()
+    const problem = document.getElementById("problem").value
+    const response = await fetch("http://127.0.0.1:5000/ask", {
+        method: "POST",
+        body: new FormData(document.querySelector("form"))
+    })
+    const answer = await response.text()
+    document.getElementById("answer").innerHTML = answer
+}
+
+  </script>
+</body>
+</html>

@@ -1,0 +1,8 @@
+hello world
+
+def("
+hello world")
+hey world
+
+i got my linux crashed
+
