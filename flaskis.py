@@ -24,12 +24,14 @@ def save():
 @app.route("/faq", methods=["GET"])
 def faq():
     return send_file("faq.html")
-@app.route("/feed", methods=["POST"])
+@app.route("/feed", methods=["GET", "POST"])
 def feed():
-    user_feed = request.form["feedback"]
-    with open("feed.txt", "a") as e:
-        e.write(user_feed + "\n")
-    return "Thank you, if you feed would be helpful we will include it in our site page!"
+    if request.method == "POST":
+        user_feed = request.form["feedback"]
+        with open("feed.txt", "a") as e:
+            e.write(user_feed + "\n")
+        return "Thank you, if your feedback would be helpful we will include it in our site!"
+    return send_file("feed.html")
 @app.route("/ask", methods=["POST"])
 def ask():
     user_problem = request.form["problem"]
