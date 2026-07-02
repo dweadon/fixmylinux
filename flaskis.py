@@ -35,16 +35,16 @@ def feed():
 @app.route("/ask", methods=["POST"])
 def ask():
     user_problem = request.form["problem"]
+    distro = request.form.get("distro", "Any")
+    
+    distro_context = f" The user is on {distro} Linux." if distro != "Any" else ""
+    
     response = requests.post(
         "https://api.groq.com/openai/v1/chat/completions",
-        headers={
-            "Authorization": f"Bearer {GROQ_API_KEY}",
-            "Content-Type": "application/json"
-        },
-        json={
+                json={
             "model": "llama-3.3-70b-versatile",
             "messages": [
-                {"role": "system", "content": SYSTEM_PROMPT},
+                {"role": "system", "content": SYSTEM_PROMPT + distro_context},
                 {"role": "user", "content": user_problem}
             ]
         }

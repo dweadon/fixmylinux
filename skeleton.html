@@ -3,6 +3,12 @@
 <head>
   <link rel="icon" type="image/png" href="/static/imresizer-linux-from-scratch-83.jpg">
   <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+  <meta name="description" content="Paste your Linux error and get an AI-powered fix in seconds.">
+  <meta property="og:title" content="FixMyLinux">
+  <meta property="og:description" content="Paste your Linux error and get an AI-powered fix in seconds.">
+  <meta property="og:image" content="https://fixmylinux.up.railway.app/static/tuix.png">
+  <meta property="og:url" content="https://fixmylinux.up.railway.app">
+  <title>FixMyLinux</title>
 <style>
 * {
     margin: 0;
@@ -16,15 +22,11 @@ body {
     color: #fff;
 }
 
-/* Header */
-
 .header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-
     padding: 20px 40px;
-
     border-bottom: 1px solid #2a2a2a;
 }
 
@@ -57,8 +59,6 @@ nav a:hover {
     color: white;
 }
 
-/* Main */
-
 .hero {
     max-width: 900px;
     margin: 60px auto;
@@ -80,31 +80,55 @@ nav a:hover {
     line-height: 1.7;
 }
 
-/* Form */
-
 #askform {
     background: #181818;
-
     border: 1px solid #2d2d2d;
     border-radius: 12px;
-
     padding: 24px;
+}
+
+/* Distro selector */
+.distro-row {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 14px;
+    flex-wrap: wrap;
+}
+
+.distro-btn {
+    background: #1e1e1e;
+    color: #b3b3b3;
+    border: 1px solid #2d2d2d;
+    border-radius: 20px;
+    padding: 6px 16px;
+    font-size: 13px;
+    cursor: pointer;
+    margin-top: 0;
+    font-weight: 500;
+    transition: all 0.15s;
+}
+
+.distro-btn:hover {
+    border-color: #1DB954;
+    color: white;
+    filter: none;
+}
+
+.distro-btn.active {
+    background: #1DB954;
+    color: black;
+    border-color: #1DB954;
 }
 
 textarea {
     width: 100%;
     min-height: 250px;
-
     background: #111111;
     color: white;
-
     border: 1px solid #2d2d2d;
     border-radius: 10px;
-
     padding: 16px;
-
     resize: vertical;
-
     font-size: 15px;
 }
 
@@ -117,126 +141,193 @@ textarea::placeholder {
     color: #888;
 }
 
-/* Button */
-
-button {
+.form-bottom {
+    display: flex;
+    align-items: center;
+    gap: 14px;
     margin-top: 18px;
-
-    background: #1DB954;
-    color: black;
-
-    border: none;
-    border-radius: 8px;
-
-    padding: 12px 28px;
-
-    font-weight: 600;
-    font-size: 15px;
-
-    cursor: pointer;
 }
 
-button:hover {
+button.fix-btn {
+    background: #1DB954;
+    color: black;
+    border: none;
+    border-radius: 8px;
+    padding: 12px 28px;
+    font-weight: 600;
+    font-size: 15px;
+    cursor: pointer;
+    margin-top: 0;
+}
+
+button.fix-btn:hover {
     filter: brightness(1.08);
 }
 
-/* Answer */
-
-#answer {
-    margin-top: 24px;
-
+/* Loading */
+.loading {
     display: none;
-
-    background: #111111;
-
-    border: 1px solid #2d2d2d;
-    border-radius: 10px;
-
-    padding: 18px;
-
-    white-space: pre-wrap;
-
-    font-family: "JetBrains Mono", monospace;
-
-    line-height: 1.7;
+    color: #b3b3b3;
+    font-size: 14px;
+    align-items: center;
+    gap: 8px;
 }
 
-/* Mobile */
+.spinner {
+    width: 16px;
+    height: 16px;
+    border: 2px solid #333;
+    border-top-color: #1DB954;
+    border-radius: 50%;
+    animation: spin 0.7s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* Answer */
+#answer-box {
+    display: none;
+    margin-top: 24px;
+}
+
+.answer-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.answer-label {
+    font-size: 13px;
+    color: #b3b3b3;
+    font-weight: 500;
+}
+
+.copy-btn {
+    background: #1e1e1e;
+    color: #b3b3b3;
+    border: 1px solid #2d2d2d;
+    border-radius: 6px;
+    padding: 5px 14px;
+    font-size: 13px;
+    cursor: pointer;
+    margin-top: 0;
+    font-weight: 500;
+}
+
+.copy-btn:hover {
+    color: white;
+    filter: none;
+}
+
+#answer {
+    background: #111111;
+    border: 1px solid #2d2d2d;
+    border-radius: 10px;
+    padding: 18px;
+    white-space: pre-wrap;
+    font-family: "JetBrains Mono", monospace;
+    line-height: 1.7;
+    font-size: 14px;
+}
+
+/* Did this fix it */
+.feedback-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 16px;
+}
+
+.feedback-label {
+    font-size: 13px;
+    color: #b3b3b3;
+}
+
+.thumb-btn {
+    background: #1e1e1e;
+    border: 1px solid #2d2d2d;
+    border-radius: 6px;
+    padding: 5px 14px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 0;
+    transition: all 0.15s;
+}
+
+.thumb-btn:hover {
+    filter: none;
+    border-color: #555;
+}
+
+.thumb-btn.voted {
+    border-color: #1DB954;
+    background: #1a2e1f;
+}
+
+#feedback-thanks {
+    font-size: 13px;
+    color: #1DB954;
+    display: none;
+}
+
 .version-badge {
     position: fixed;
     bottom: 16px;
     right: 16px;
-
     background: #181818;
     border: 1px solid #2d2d2d;
-
     color: #b3b3b3;
-
     padding: 6px 10px;
     border-radius: 8px;
-
     font-size: 12px;
     font-weight: 500;
 }
 
 @media (max-width: 768px) {
-
-    .header {
-        padding: 18px;
-    }
-
-    nav {
-        gap: 14px;
-    }
-
-    .hero-content h2 {
-        font-size: 2rem;
-    }
-
-    #askform {
-        padding: 18px;
-    }
+    .header { padding: 18px; }
+    nav { gap: 14px; }
+    .hero-content h2 { font-size: 2rem; }
+    #askform { padding: 18px; }
 }
-
-
 </style>
-  <title>FixMyLinux</title>
 </head>
 <body>
 
-
 <header class="header">
-<!-- tab icon (already have this) -->
-<link rel="icon" type="image/png" href="/static/imresizer-linux-from-scratch-83.jpg">
-
-<!-- page title (already have this) -->
-<title>FixMyLinux</title>
-
-<!-- description that shows in search results and link previews -->
-<meta name="description" content="Paste your Linux error and get an AI-powered fix in seconds.">
-
-<!-- open graph tags (for when you share the link on Discord, Twitter etc) -->
-<meta property="og:title" content="FixMyLinux">
-<meta property="og:description" content="Paste your Linux error and get an AI-powered fix in seconds.">
-<meta property="og:image" content="https://fixmylinux.up.railway.app/static/tuix.png">
-<meta property="og:url" content="https://fixmylinux.up.railway.app">
+    <div class="logo-section">
+        <img src="/static/tuix.png" alt="tux">
+        <h1>FixMyLinux</h1>
+    </div>
+    <nav>
+        <a href="/faq">FAQ</a>
+        <a href="/feed">Feedback</a>
+    </nav>
 </header>
 
 <main class="hero">
-
     <div class="hero-content">
         <h2>FixMyLinux</h2>
-
-        <p>
-            Paste an error message, boot log, kernel panic,
-            package issue, or terminal output and get help in seconds.
-        </p>
-        <div class="version-badge">
-            v2.0
-        </div>
+        <p>Paste an error message, boot log, kernel panic, package issue, or terminal output and get help in seconds.</p>
+        <div class="version-badge">v2.1</div>
     </div>
 
     <form id="askform" action="https://fixmylinux.up.railway.app/ask" method="POST">
+
+        <!-- Distro selector -->
+        <div class="distro-row">
+            <span style="color:#b3b3b3; font-size:13px; align-self:center;">Distro:</span>
+            <button type="button" class="distro-btn active" onclick="selectDistro(this)">Other</button>
+            <button type="button" class="distro-btn" onclick="selectDistro(this)">Ubuntu</button>
+            <button type="button" class="distro-btn" onclick="selectDistro(this)">Arch</button>
+            <button type="button" class="distro-btn" onclick="selectDistro(this)">Fedora</button>
+            <button type="button" class="distro-btn" onclick="selectDistro(this)">Debian</button>
+            <button type="button" class="distro-btn" onclick="selectDistro(this)">Mint</button>
+        </div>
+
+        <input type="hidden" id="distro" name="distro" value="Any">
 
         <textarea
             id="problem"
@@ -245,32 +336,85 @@ button:hover {
             placeholder="Paste your Linux problem here..."
         ></textarea>
 
-        <button type="button" onclick="askAI(event)">
-            Fix it!
-        </button>
+        <div class="form-bottom">
+            <button type="button" class="fix-btn" onclick="askAI(event)">Fix it!</button>
+            <div class="loading" id="loading">
+                <div class="spinner"></div>
+                <span>Analyzing your problem...</span>
+            </div>
+        </div>
 
-        <div id="answer"></div>
+        <!-- Answer box -->
+        <div id="answer-box">
+            <div class="answer-header">
+                <span class="answer-label">AI Fix</span>
+                <button type="button" class="copy-btn" onclick="copyAnswer()">Copy</button>
+            </div>
+            <div id="answer"></div>
+
+            <!-- Did this fix it? -->
+            <div class="feedback-row">
+                <span class="feedback-label">Did this fix it?</span>
+                <button type="button" class="thumb-btn" onclick="vote(this, 'yes')">👍</button>
+                <button type="button" class="thumb-btn" onclick="vote(this, 'no')">👎</button>
+                <span id="feedback-thanks">Thanks for the feedback!</span>
+            </div>
+        </div>
 
     </form>
-
 </main>
 
-</body>
 <script>
+    // Distro selector
+    function selectDistro(btn) {
+        document.querySelectorAll('.distro-btn').forEach(b => b.classList.remove('active'))
+        btn.classList.add('active')
+        document.getElementById('distro').value = btn.textContent
+    }
 
-async function askAI(event) {
-    event.preventDefault()
+    // Ask AI
+    async function askAI(event) {
+        event.preventDefault()
 
-    const response = await fetch("/ask", {
-        method: "POST",
-        body: new FormData(document.getElementById("askform"))
-    })
+        const loading = document.getElementById('loading')
+        const answerBox = document.getElementById('answer-box')
+        const answer = document.getElementById('answer')
 
-    const answer = await response.text()
+        loading.style.display = 'flex'
+        answerBox.style.display = 'none'
 
-    document.getElementById("answer").style.display = "block";
-    document.getElementById("answer").innerHTML = answer;
-}
+        const response = await fetch("/ask", {
+            method: "POST",
+            body: new FormData(document.getElementById("askform"))
+        })
 
+        const text = await response.text()
+
+        loading.style.display = 'none'
+        answerBox.style.display = 'block'
+        answer.innerHTML = text
+
+        // Reset vote buttons
+        document.querySelectorAll('.thumb-btn').forEach(b => b.classList.remove('voted'))
+        document.getElementById('feedback-thanks').style.display = 'none'
+    }
+
+    // Copy answer
+    function copyAnswer() {
+        const text = document.getElementById('answer').innerText
+        navigator.clipboard.writeText(text)
+        const btn = document.querySelector('.copy-btn')
+        btn.textContent = 'Copied!'
+        setTimeout(() => btn.textContent = 'Copy', 2000)
+    }
+
+    // Vote
+    function vote(btn, type) {
+        document.querySelectorAll('.thumb-btn').forEach(b => b.classList.remove('voted'))
+        btn.classList.add('voted')
+        document.getElementById('feedback-thanks').style.display = 'inline'
+    }
 </script>
+
+</body>
 </html>
