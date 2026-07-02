@@ -41,7 +41,11 @@ def ask():
     
     response = requests.post(
         "https://api.groq.com/openai/v1/chat/completions",
-                json={
+        headers={
+            "Authorization": f"Bearer {GROQ_API_KEY}",
+            "Content-Type": "application/json"
+        },
+        json={
             "model": "llama-3.3-70b-versatile",
             "messages": [
                 {"role": "system", "content": SYSTEM_PROMPT + distro_context},
@@ -49,8 +53,11 @@ def ask():
             ]
         }
     )
-    print(response.json())
-    answer = response.json()["choices"][0]["message"]["content"]
+    data = response.json()
+    if "choices" not in data:
+        print("Groq error:", data)
+        return f"AI error: {data.get('error', {}).get('message', 'unknown error')}", 500
+    answer = data["choices"][0]["message"]["content"]
     return answer
 
 port = int(os.environ.get("PORT", 8080))
