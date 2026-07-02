@@ -175,7 +175,7 @@ def kb_list():
         for e in entries[:300]
     )
     if not rows:
-        rows = "<li style='color:#888;'>No solved problems yet — be the first to ask one!</li>"
+        rows = "<li style='color:#888;'>No solved problems yet, be the first to ask one!</li>"
     return f"""
     <html><head><title>FixMyLinux - Knowledge Base</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
