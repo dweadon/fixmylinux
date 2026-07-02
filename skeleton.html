@@ -304,6 +304,7 @@ button.fix-btn:hover {
     <nav>
         <a href="/faq">FAQ</a>
         <a href="/feed">Feedback</a>
+        <a href="/kb">Solved Problems</a>
     </nav>
 </header>
 
@@ -334,6 +335,13 @@ button.fix-btn:hover {
             name="problem"
             rows="10"
             placeholder="Paste your Linux problem here..."
+        ></textarea>
+        <textarea
+            id="extra_info"
+            name="extra_info"
+            rows="4"
+            placeholder="Optional: paste uname -a, journalctl output, or other system info for a more accurate fix..."
+            style="margin-top:10px; min-height:80px;"
         ></textarea>
 
         <div class="form-bottom">
@@ -384,15 +392,22 @@ button.fix-btn:hover {
         answerBox.style.display = 'none'
 
         const response = await fetch("/ask", {
-            method: "POST",
-            body: new FormData(document.getElementById("askform"))
+        method: "POST",
+        body: new FormData(document.getElementById("askform"))
         })
-
-        const text = await response.text()
-
+        const data = await response.json()
         loading.style.display = 'none'
         answerBox.style.display = 'block'
-        answer.innerHTML = text
+        answer.innerText = data.answer
+        if (data.flagged) {
+        answer.style.border = "1px solid #ff5555"
+        }
+        if (data.kb_id) {
+        answer.insertAdjacentHTML('afterend',
+            `<p style="font-size:12px;color:#888;margin-top:8px;">
+            Saved to <a href="/kb/${data.kb_id}" style="color:#1DB954;" target="_blank">the knowledge base</a>
+            </p>`)
+        }
 
         // Reset vote buttons
         document.querySelectorAll('.thumb-btn').forEach(b => b.classList.remove('voted'))
