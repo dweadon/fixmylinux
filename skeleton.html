@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" type="image/png" href="/static/imresizer-linux-from-scratch-83.jpg">
   <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
   <meta name="description" content="Paste your Linux error and get an AI-powered fix in seconds.">
@@ -195,13 +194,7 @@ button.fix-btn {
     margin-top: 0;
 }
 button.fix-btn:hover { filter: brightness(1.1); }
-button,
-.mode-btn,
-.distro-btn,
-.followup-btn,
-.log-upload-btn {
-    min-height: 44px;
-}
+
 .loading {
     display: none;
     color: #b3b3b3;
@@ -415,150 +408,13 @@ button,
     font-size: 12px;
     font-weight: 500;
 }
-@media (max-width: 480px) {
 
-    .mode-btn,
-    .distro-btn {
-        width: 100%;
-    }
-
-    .mode-row,
-    .distro-row {
-        flex-direction: column;
-        align-items: stretch;
-    }
-}
 @media (max-width: 768px) {
-
-    .profile-bar {
-        align-items: flex-start;
-    }
-
-    .profile-bar span:first-child {
-        flex: 1;
-    }
-}
-@media (max-width: 480px) {
-
-    .hero-content h2 {
-        font-size: 1.6rem;
-    }
-
-    .profile-bar,
-    #askform,
-    .answer-section {
-        padding-left: 12px;
-        padding-right: 12px;
-    }
-}
-@media (max-width: 768px) {
-
-    body {
-        overflow-x: hidden;
-    }
-
-    .header {
-        flex-direction: column;
-        gap: 15px;
-        padding: 18px 15px;
-        text-align: center;
-    }
-
-    .logo-section {
-        justify-content: center;
-    }
-
-    .logo-section h1 {
-        font-size: 1.4rem;
-    }
-
-    nav {
-        width: 100%;
-        justify-content: center;
-        flex-wrap: wrap;
-        gap: 18px;
-    }
-
-    .hero {
-        margin: 25px auto;
-        padding: 0 15px;
-    }
-
-    .hero-content h2 {
-        font-size: 1.8rem;
-        line-height: 1.2;
-    }
-
-    .hero-content p {
-        font-size: 0.95rem;
-    }
-
-    #askform {
-        padding: 16px;
-    }
-
-    textarea {
-        min-height: 180px;
-        font-size: 16px;
-    }
-
-    .mode-row,
-    .distro-row {
-        gap: 8px;
-    }
-
-    .mode-btn,
-    .distro-btn {
-        flex: 1;
-        min-width: 90px;
-        text-align: center;
-    }
-
-    .profile-form {
-        flex-direction: column;
-    }
-
-    .profile-input {
-        width: 100%;
-        min-width: 100%;
-    }
-
-    .form-bottom {
-        flex-direction: column;
-        align-items: stretch;
-    }
-
-    .fix-btn {
-        width: 100%;
-    }
-
-    .followup-row {
-        flex-direction: column;
-    }
-
-    .followup-input {
-        min-width: 100%;
-    }
-
-    .followup-btn {
-        width: 100%;
-    }
-
-    .version-badge {
-        position: static;
-        display: inline-block;
-        margin-top: 10px;
-    }
-
-    .confidence-row,
-    .feedback-row {
-        flex-wrap: wrap;
-    }
-
-    .section-header {
-        flex-wrap: wrap;
-        gap: 10px;
-    }
+    .header { padding: 18px; }
+    nav { gap: 14px; }
+    .hero-content h2 { font-size: 2rem; }
+    #askform { padding: 18px; }
+    .logo-section h1 { font-size: 1.4rem; }
 }
 </style>
 </head>
