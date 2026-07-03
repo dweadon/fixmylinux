@@ -10,11 +10,7 @@
   <meta property="og:url" content="https://fixmylinux.up.railway.app">
   <title>FixMyLinux</title>
 <style>
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+* { margin: 0; padding: 0; box-sizing: border-box; }
 
 body {
     font-family: Inter, sans-serif;
@@ -22,6 +18,7 @@ body {
     color: #fff;
 }
 
+/* Header */
 .header {
     display: flex;
     justify-content: space-between;
@@ -29,57 +26,63 @@ body {
     padding: 20px 40px;
     border-bottom: 1px solid #2a2a2a;
 }
+.logo-section { display: flex; align-items: center; gap: 12px; }
+.logo-section img { width: 42px; }
+.logo-section h1 { font-size: 1.8rem; font-weight: 700; }
+nav { display: flex; gap: 24px; }
+nav a { text-decoration: none; color: #b3b3b3; }
+nav a:hover { color: white; }
 
-.logo-section {
+/* Hero */
+.hero { max-width: 900px; margin: 40px auto; padding: 0 20px; }
+.hero-content { margin-bottom: 28px; }
+.hero-content h2 { font-size: 2.7rem; font-weight: 700; margin-bottom: 12px; }
+.hero-content p { color: #b3b3b3; line-height: 1.7; }
+
+/* System Profile */
+.profile-bar {
+    background: #181818;
+    border: 1px solid #2d2d2d;
+    border-radius: 10px;
+    padding: 14px 20px;
+    margin-bottom: 20px;
+    cursor: pointer;
     display: flex;
+    justify-content: space-between;
     align-items: center;
+}
+.profile-bar span { font-size: 14px; color: #b3b3b3; }
+.profile-bar .arrow { font-size: 12px; color: #555; transition: transform 0.2s; }
+.profile-bar.open .arrow { transform: rotate(180deg); }
+
+.profile-form {
+    display: none;
+    background: #181818;
+    border: 1px solid #2d2d2d;
+    border-top: none;
+    border-radius: 0 0 10px 10px;
+    padding: 16px 20px;
+    margin-top: -20px;
+    margin-bottom: 20px;
     gap: 12px;
+    flex-wrap: wrap;
 }
+.profile-form.open { display: flex; }
 
-.logo-section img {
-    width: 42px;
-}
-
-.logo-section h1 {
-    font-size: 1.8rem;
-    font-weight: 700;
-}
-
-nav {
-    display: flex;
-    gap: 24px;
-}
-
-nav a {
-    text-decoration: none;
-    color: #b3b3b3;
-}
-
-nav a:hover {
+.profile-input {
+    background: #111;
+    border: 1px solid #2d2d2d;
+    border-radius: 6px;
     color: white;
+    padding: 8px 12px;
+    font-size: 13px;
+    flex: 1;
+    min-width: 160px;
 }
+.profile-input::placeholder { color: #555; }
+.profile-input:focus { outline: none; border-color: #444; }
 
-.hero {
-    max-width: 900px;
-    margin: 60px auto;
-    padding: 0 20px;
-}
-
-.hero-content {
-    margin-bottom: 35px;
-}
-
-.hero-content h2 {
-    font-size: 2.7rem;
-    font-weight: 700;
-    margin-bottom: 12px;
-}
-
-.hero-content p {
-    color: #b3b3b3;
-    line-height: 1.7;
-}
-
+/* Form */
 #askform {
     background: #181818;
     border: 1px solid #2d2d2d;
@@ -87,42 +90,56 @@ nav a:hover {
     padding: 24px;
 }
 
-/* Distro selector */
+/* Mode selector */
+.mode-row {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 16px;
+    align-items: center;
+}
+.mode-label { font-size: 13px; color: #b3b3b3; margin-right: 4px; }
+
+.mode-btn {
+    background: #1e1e1e;
+    color: #b3b3b3;
+    border: 1px solid #2d2d2d;
+    border-radius: 20px;
+    padding: 5px 14px;
+    font-size: 13px;
+    cursor: pointer;
+    margin-top: 0;
+    font-weight: 500;
+}
+.mode-btn:hover { color: white; filter: none; border-color: #555; }
+.mode-btn.active { background: #1DB954; color: black; border-color: #1DB954; }
+
+/* Distro row */
 .distro-row {
     display: flex;
-    gap: 10px;
+    gap: 8px;
     margin-bottom: 14px;
     flex-wrap: wrap;
+    align-items: center;
 }
+.distro-label { font-size: 13px; color: #b3b3b3; margin-right: 4px; }
 
 .distro-btn {
     background: #1e1e1e;
     color: #b3b3b3;
     border: 1px solid #2d2d2d;
     border-radius: 20px;
-    padding: 6px 16px;
+    padding: 5px 14px;
     font-size: 13px;
     cursor: pointer;
     margin-top: 0;
     font-weight: 500;
-    transition: all 0.15s;
 }
-
-.distro-btn:hover {
-    border-color: #1DB954;
-    color: white;
-    filter: none;
-}
-
-.distro-btn.active {
-    background: #1DB954;
-    color: black;
-    border-color: #1DB954;
-}
+.distro-btn:hover { color: white; filter: none; border-color: #555; }
+.distro-btn.active { background: #1DB954; color: black; border-color: #1DB954; }
 
 textarea {
     width: 100%;
-    min-height: 250px;
+    min-height: 220px;
     background: #111111;
     color: white;
     border: 1px solid #2d2d2d;
@@ -130,16 +147,33 @@ textarea {
     padding: 16px;
     resize: vertical;
     font-size: 15px;
+    font-family: "JetBrains Mono", monospace;
 }
+textarea:focus { outline: none; border-color: #444; }
+textarea::placeholder { color: #888; font-family: Inter, sans-serif; }
 
-textarea:focus {
-    outline: none;
-    border-color: #444;
+/* Log upload row */
+.log-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 12px;
+    flex-wrap: wrap;
 }
-
-textarea::placeholder {
-    color: #888;
+.log-upload-btn, .diagnose-btn {
+    background: #1e1e1e;
+    color: #b3b3b3;
+    border: 1px solid #2d2d2d;
+    border-radius: 8px;
+    padding: 8px 14px;
+    font-size: 13px;
+    cursor: pointer;
+    margin-top: 0;
+    font-weight: 500;
 }
+.log-upload-btn:hover, .diagnose-btn:hover { color: white; border-color: #555; }
+.log-filename { font-size: 12px; color: #1DB954; }
+#log_file { display: none; }
 
 .form-bottom {
     display: flex;
@@ -154,17 +188,13 @@ button.fix-btn {
     border: none;
     border-radius: 8px;
     padding: 12px 28px;
-    font-weight: 600;
+    font-weight: 700;
     font-size: 15px;
     cursor: pointer;
     margin-top: 0;
 }
+button.fix-btn:hover { filter: brightness(1.1); }
 
-button.fix-btn:hover {
-    filter: brightness(1.08);
-}
-
-/* Loading */
 .loading {
     display: none;
     color: #b3b3b3;
@@ -172,107 +202,200 @@ button.fix-btn:hover {
     align-items: center;
     gap: 8px;
 }
-
 .spinner {
-    width: 16px;
-    height: 16px;
+    width: 16px; height: 16px;
     border: 2px solid #333;
     border-top-color: #1DB954;
     border-radius: 50%;
     animation: spin 0.7s linear infinite;
 }
+@keyframes spin { to { transform: rotate(360deg); } }
 
-@keyframes spin {
-    to { transform: rotate(360deg); }
+/* Answer box */
+#answer-box { display: none; margin-top: 24px; }
+
+/* Time to solution */
+.solve-time {
+    font-size: 12px;
+    color: #555;
+    margin-bottom: 14px;
+}
+.solve-time strong { color: #1DB954; }
+
+/* Danger warning */
+.danger-box {
+    background: #2a1010;
+    border: 1px solid #6b1f1f;
+    border-radius: 8px;
+    padding: 14px 16px;
+    margin-bottom: 16px;
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+}
+.danger-icon { font-size: 18px; }
+.danger-text { font-size: 13px; color: #ff6b6b; line-height: 1.6; }
+.danger-text strong { display: block; margin-bottom: 4px; font-size: 14px; }
+
+/* Confidence badge (qualitative, not a bare percentage) */
+.confidence-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 6px;
+    flex-wrap: wrap;
+}
+.confidence-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 600;
+}
+.confidence-badge.high { background: #10331c; color: #3ddc78; }
+.confidence-badge.medium { background: #332c10; color: #ecc94b; }
+.confidence-badge.low { background: #331010; color: #ff6b6b; }
+.confidence-basis {
+    font-size: 12px;
+    color: #777;
+    margin-bottom: 14px;
 }
 
-/* Answer */
-#answer-box {
-    display: none;
-    margin-top: 24px;
+/* Sources */
+.sources-row {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 16px;
+}
+.source-tag {
+    background: #1e1e1e;
+    border: 1px solid #2d2d2d;
+    border-radius: 6px;
+    padding: 3px 10px;
+    font-size: 12px;
+    color: #b3b3b3;
 }
 
-.answer-header {
+/* Answer sections */
+.answer-section {
+    background: #111111;
+    border: 1px solid #2d2d2d;
+    border-radius: 10px;
+    padding: 16px 18px;
+    margin-bottom: 12px;
+}
+.section-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 10px;
 }
+.section-title { font-size: 12px; font-weight: 600; color: #b3b3b3; text-transform: uppercase; letter-spacing: 0.05em; }
 
-.answer-label {
-    font-size: 13px;
-    color: #b3b3b3;
-    font-weight: 500;
+.fix-text {
+    white-space: pre-wrap;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 14px;
+    line-height: 1.7;
 }
 
+.why-text, .learn-text, .beginner-text {
+    font-size: 14px;
+    line-height: 1.7;
+    color: #ccc;
+}
+
+/* Collapsible sections */
+.collapsible { cursor: pointer; }
+.collapsible .arrow { font-size: 11px; color: #555; transition: transform 0.2s; }
+.collapsible.open .arrow { transform: rotate(180deg); }
+.collapsible-body { display: none; margin-top: 10px; }
+.collapsible-body.open { display: block; }
+
+/* Copy btn */
 .copy-btn {
     background: #1e1e1e;
     color: #b3b3b3;
     border: 1px solid #2d2d2d;
     border-radius: 6px;
-    padding: 5px 14px;
+    padding: 4px 12px;
+    font-size: 12px;
+    cursor: pointer;
+    margin-top: 0;
+    font-weight: 500;
+}
+.copy-btn:hover { color: white; filter: none; }
+
+/* Vote row */
+.feedback-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 16px;
+}
+.feedback-label { font-size: 13px; color: #b3b3b3; }
+.thumb-btn {
+    background: #1e1e1e;
+    border: 1px solid #2d2d2d;
+    border-radius: 6px;
+    padding: 5px 12px;
+    font-size: 15px;
+    cursor: pointer;
+    margin-top: 0;
+}
+.thumb-btn:hover { filter: none; border-color: #555; }
+.thumb-btn.voted { border-color: #1DB954; background: #1a2e1f; }
+#feedback-thanks { font-size: 13px; color: #1DB954; display: none; }
+
+/* Follow-up box */
+.followup-box {
+    margin-top: 12px;
+}
+.followup-row {
+    display: flex;
+    gap: 8px;
+    margin-top: 10px;
+    flex-wrap: wrap;
+}
+.followup-input {
+    flex: 1;
+    min-width: 200px;
+    background: #111;
+    border: 1px solid #2d2d2d;
+    border-radius: 8px;
+    color: white;
+    padding: 10px 14px;
+    font-size: 14px;
+}
+.followup-input:focus { outline: none; border-color: #444; }
+.followup-btn {
+    background: #1e1e1e;
+    color: white;
+    border: 1px solid #2d2d2d;
+    border-radius: 8px;
+    padding: 10px 18px;
     font-size: 13px;
     cursor: pointer;
     margin-top: 0;
     font-weight: 500;
 }
-
-.copy-btn:hover {
-    color: white;
-    filter: none;
-}
-
-#answer {
-    background: #111111;
+.followup-btn:hover { border-color: #1DB954; }
+.followup-thread { margin-top: 14px; display: flex; flex-direction: column; gap: 10px; }
+.followup-msg {
+    background: #111;
     border: 1px solid #2d2d2d;
-    border-radius: 10px;
-    padding: 18px;
-    white-space: pre-wrap;
-    font-family: "JetBrains Mono", monospace;
-    line-height: 1.7;
-    font-size: 14px;
-}
-
-/* Did this fix it */
-.feedback-row {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin-top: 16px;
-}
-
-.feedback-label {
+    border-radius: 8px;
+    padding: 10px 14px;
     font-size: 13px;
-    color: #b3b3b3;
+    line-height: 1.6;
 }
+.followup-msg.user { color: #b3b3b3; }
+.followup-msg.assistant { color: #ddd; white-space: pre-wrap; font-family: "JetBrains Mono", monospace; }
 
-.thumb-btn {
-    background: #1e1e1e;
-    border: 1px solid #2d2d2d;
-    border-radius: 6px;
-    padding: 5px 14px;
-    font-size: 16px;
-    cursor: pointer;
-    margin-top: 0;
-    transition: all 0.15s;
-}
-
-.thumb-btn:hover {
-    filter: none;
-    border-color: #555;
-}
-
-.thumb-btn.voted {
-    border-color: #1DB954;
-    background: #1a2e1f;
-}
-
-#feedback-thanks {
-    font-size: 13px;
-    color: #1DB954;
-    display: none;
-}
-
+/* KB link */
 .version-badge {
     position: fixed;
     bottom: 16px;
@@ -291,6 +414,7 @@ button.fix-btn:hover {
     nav { gap: 14px; }
     .hero-content h2 { font-size: 2rem; }
     #askform { padding: 18px; }
+    .logo-section h1 { font-size: 1.4rem; }
 }
 </style>
 </head>
@@ -303,132 +427,421 @@ button.fix-btn:hover {
     </div>
     <nav>
         <a href="/faq">FAQ</a>
-        <a href="/feed">Feedback</a>
         <a href="/kb">Solved Problems</a>
+        <a href="/feed">Feedback</a>
     </nav>
 </header>
 
 <main class="hero">
     <div class="hero-content">
-        <h2>FixMyLinux</h2>
-        <p>Paste an error message, boot log, kernel panic, package issue, or terminal output and get help in seconds.</p>
-        <div class="version-badge">v2.1</div>
+        <h2>Fix your Linux problem</h2>
+        <p>Paste an error, log, or terminal output. Get a verified, trust-rated fix in seconds.</p>
+        <div class="version-badge">v4.1</div>
     </div>
 
-    <form id="askform" action="https://fixmylinux.up.railway.app/ask" method="POST">
+    <!-- System Profile -->
+    <div class="profile-bar" onclick="toggleProfile(this)">
+        <span>⚙️ &nbsp;Set your system profile <span style="color:#555; font-size:12px;">(optional — makes answers more accurate)</span></span>
+        <span class="arrow">▼</span>
+    </div>
+    <div class="profile-form" id="profile-form">
+        <input class="profile-input" id="profile_distro" name="profile_distro" placeholder="Distro (e.g. Ubuntu 24.04)">
+        <input class="profile-input" id="profile_de" name="profile_de" placeholder="Desktop (e.g. GNOME, KDE)">
+        <input class="profile-input" id="profile_gpu" name="profile_gpu" placeholder="GPU (e.g. NVIDIA RTX 4060)">
+        <input class="profile-input" id="profile_pm" name="profile_pm" placeholder="Package manager (e.g. apt, pacman)">
+    </div>
 
-        <!-- Distro selector -->
-        <div class="distro-row">
-            <span style="color:#b3b3b3; font-size:13px; align-self:center;">Distro:</span>
-            <button type="button" class="distro-btn active" onclick="selectDistro(this)">Other</button>
-            <button type="button" class="distro-btn" onclick="selectDistro(this)">Ubuntu</button>
-            <button type="button" class="distro-btn" onclick="selectDistro(this)">Arch</button>
-            <button type="button" class="distro-btn" onclick="selectDistro(this)">Fedora</button>
-            <button type="button" class="distro-btn" onclick="selectDistro(this)">Debian</button>
-            <button type="button" class="distro-btn" onclick="selectDistro(this)">Mint</button>
+    <form id="askform" action="https://fixmylinux.up.railway.app/ask" method="POST" enctype="multipart/form-data">
+
+        <!-- Hidden profile fields -->
+        <input type="hidden" name="profile_distro" id="h_profile_distro">
+        <input type="hidden" name="profile_de" id="h_profile_de">
+        <input type="hidden" name="profile_gpu" id="h_profile_gpu">
+        <input type="hidden" name="profile_pm" id="h_profile_pm">
+        <input type="hidden" name="distro" id="distro" value="Any">
+        <input type="hidden" name="mode" id="mode" value="normal">
+
+        <!-- Mode -->
+        <div class="mode-row">
+            <span class="mode-label">Mode:</span>
+            <button type="button" class="mode-btn active" onclick="selectMode(this, 'normal')">⚡ Normal</button>
+            <button type="button" class="mode-btn" onclick="selectMode(this, 'beginner')">🐧 Beginner</button>
+            <button type="button" class="mode-btn" onclick="selectMode(this, 'learning')">📚 Learning</button>
         </div>
 
-        <input type="hidden" id="distro" name="distro" value="Any">
+        <!-- Distro quick select -->
+        <div class="distro-row">
+            <span class="distro-label">Distro:</span>
+            <button type="button" class="distro-btn active" onclick="selectDistro(this, 'Any')">Any</button>
+            <button type="button" class="distro-btn" onclick="selectDistro(this, 'Ubuntu')">Ubuntu</button>
+            <button type="button" class="distro-btn" onclick="selectDistro(this, 'Arch')">Arch</button>
+            <button type="button" class="distro-btn" onclick="selectDistro(this, 'Fedora')">Fedora</button>
+            <button type="button" class="distro-btn" onclick="selectDistro(this, 'Debian')">Debian</button>
+            <button type="button" class="distro-btn" onclick="selectDistro(this, 'Mint')">Mint</button>
+        </div>
 
-        <textarea
-            id="problem"
-            name="problem"
-            rows="10"
-            placeholder="Paste your Linux problem here..."
-        ></textarea>
-        <textarea
-            id="extra_info"
-            name="extra_info"
-            rows="4"
-            placeholder="Optional: paste uname -a, journalctl output, or other system info for a more accurate fix..."
-            style="margin-top:10px; min-height:80px;"
-        ></textarea>
+        <textarea id="problem" name="problem" rows="10" placeholder="Paste your Linux problem here..."></textarea>
+
+        <!-- Log upload + diagnostic script -->
+        <div class="log-row">
+            <input type="file" id="log_file" name="log_file" accept=".log,.txt">
+            <button type="button" class="log-upload-btn" onclick="document.getElementById('log_file').click()">📂 Attach a log file (journalctl / dmesg / apt output)</button>
+            <span class="log-filename" id="log-filename"></span>
+            <a class="diagnose-btn" href="/diagnose.sh" download style="text-decoration:none; display:inline-block;">🩺 Download diagnostic script</a>
+        </div>
 
         <div class="form-bottom">
             <button type="button" class="fix-btn" onclick="askAI(event)">Fix it!</button>
             <div class="loading" id="loading">
                 <div class="spinner"></div>
-                <span>Analyzing your problem...</span>
+                <span id="loading-text">Analyzing your problem...</span>
             </div>
         </div>
 
         <!-- Answer box -->
         <div id="answer-box">
-            <div class="answer-header">
-                <span class="answer-label">AI Fix</span>
-                <button type="button" class="copy-btn" onclick="copyAnswer()">Copy</button>
-            </div>
-            <div id="answer"></div>
 
-            <!-- Did this fix it? -->
+            <div class="solve-time" id="solve-time"></div>
+
+            <!-- Danger warning -->
+            <div class="danger-box" id="danger-box" style="display:none;">
+                <span class="danger-icon">🚨</span>
+                <div class="danger-text">
+                    <strong>Dangerous command detected</strong>
+                    <span id="danger-text"></span>
+                </div>
+            </div>
+
+            <!-- Confidence -->
+            <div class="confidence-row">
+                <span class="confidence-badge" id="confidence-badge">—</span>
+            </div>
+            <div class="confidence-basis" id="confidence-basis"></div>
+
+            <!-- Sources -->
+            <div class="sources-row" id="sources-row"></div>
+
+            <!-- Fix -->
+            <div class="answer-section">
+                <div class="section-header">
+                    <span class="section-title">✅ Fix</span>
+                    <button type="button" class="copy-btn" onclick="copyAnswer()">Copy</button>
+                </div>
+                <div class="fix-text" id="answer"></div>
+            </div>
+
+            <!-- Beginner explanation (shown in beginner mode) -->
+            <div class="answer-section" id="beginner-box" style="display:none;">
+                <div class="section-title" style="margin-bottom:10px;">🐧 What this does (plain English)</div>
+                <div class="beginner-text" id="beginner-text"></div>
+            </div>
+
+            <!-- Why this happened -->
+            <div class="answer-section collapsible" onclick="toggleSection(this)">
+                <div class="section-header">
+                    <span class="section-title">🔬 Why this happened</span>
+                    <span class="arrow">▼</span>
+                </div>
+                <div class="collapsible-body">
+                    <div class="why-text" id="why-text"></div>
+                </div>
+            </div>
+
+            <!-- Learn -->
+            <div class="answer-section collapsible" onclick="toggleSection(this)">
+                <div class="section-header">
+                    <span class="section-title">📚 What to learn from this</span>
+                    <span class="arrow">▼</span>
+                </div>
+                <div class="collapsible-body">
+                    <div class="learn-text" id="learn-text"></div>
+                </div>
+            </div>
+
+            <!-- Vote -->
             <div class="feedback-row">
                 <span class="feedback-label">Did this fix it?</span>
-                <button type="button" class="thumb-btn" onclick="vote(this, 'yes')">👍</button>
-                <button type="button" class="thumb-btn" onclick="vote(this, 'no')">👎</button>
+                <button type="button" class="thumb-btn" onclick="vote(this, 'up')">👍</button>
+                <button type="button" class="thumb-btn" onclick="vote(this, 'down')">👎</button>
                 <span id="feedback-thanks">Thanks for the feedback!</span>
             </div>
-        </div>
 
+            <!-- Follow-up: continue troubleshooting like a doctor visit -->
+            <div class="answer-section followup-box">
+                <div class="section-title" style="margin-bottom:10px;">💬 Still stuck? Tell us what happened</div>
+                <div class="followup-thread" id="followup-thread"></div>
+                <div class="followup-row">
+                    <input type="text" class="followup-input" id="followup-input" placeholder="e.g. I ran that but got 'permission denied'...">
+                    <button type="button" class="followup-btn" onclick="sendFollowup()">I tried it →</button>
+                </div>
+            </div>
+
+            <!-- KB link -->
+            <div id="kb-link-row" style="display:none; margin-top:12px; font-size:13px; color:#555;">
+                🏆 This fix was saved to the community knowledge base — 
+                <a id="kb-link" href="#" target="_blank" style="color:#1DB954; text-decoration:none;">view it here</a>
+            </div>
+
+        </div>
     </form>
 </main>
 
 <script>
-    // Distro selector
-    function selectDistro(btn) {
-        document.querySelectorAll('.distro-btn').forEach(b => b.classList.remove('active'))
-        btn.classList.add('active')
-        document.getElementById('distro').value = btn.textContent
+// Profile toggle
+function toggleProfile(bar) {
+    bar.classList.toggle('open')
+    document.getElementById('profile-form').classList.toggle('open')
+}
+
+// Distro select
+function selectDistro(btn, val) {
+    document.querySelectorAll('.distro-btn').forEach(b => b.classList.remove('active'))
+    btn.classList.add('active')
+    document.getElementById('distro').value = val
+}
+
+// Mode select
+function selectMode(btn, val) {
+    document.querySelectorAll('.mode-btn').forEach(b => b.classList.remove('active'))
+    btn.classList.add('active')
+    document.getElementById('mode').value = val
+}
+
+// Collapsible sections
+function toggleSection(el) {
+    if (el.classList.contains('collapsible')) {
+        el.classList.toggle('open')
+        el.querySelector('.collapsible-body').classList.toggle('open')
+    }
+}
+
+// Copy
+function copyAnswer() {
+    const text = document.getElementById('answer').innerText
+    navigator.clipboard.writeText(text)
+    const btn = document.querySelector('.copy-btn')
+    btn.textContent = 'Copied!'
+    setTimeout(() => btn.textContent = 'Copy', 2000)
+}
+
+// Vote — now actually persisted server-side against the saved KB entry
+let currentKbId = null
+async function vote(btn, direction) {
+    document.querySelectorAll('.thumb-btn').forEach(b => b.classList.remove('voted'))
+    btn.classList.add('voted')
+    document.getElementById('feedback-thanks').style.display = 'inline'
+    if (currentKbId) {
+        try {
+            const fd = new FormData()
+            fd.append('direction', direction)
+            await fetch('/vote/' + currentKbId, { method: 'POST', body: fd })
+        } catch (e) { /* non-fatal, vote UI already updated */ }
+    }
+}
+
+// Log file picker
+document.getElementById('log_file').addEventListener('change', (e) => {
+    const f = e.target.files[0]
+    document.getElementById('log-filename').textContent = f ? '✔ ' + f.name : ''
+})
+
+// Sync profile fields
+function syncProfile() {
+    document.getElementById('h_profile_distro').value = document.getElementById('profile_distro').value
+    document.getElementById('h_profile_de').value = document.getElementById('profile_de').value
+    document.getElementById('h_profile_gpu').value = document.getElementById('profile_gpu').value
+    document.getElementById('h_profile_pm').value = document.getElementById('profile_pm').value
+}
+
+let currentConversationId = null
+
+function renderAnswer(data, mode) {
+    // Danger warning (from AI list OR server-side regex flag)
+    const dangerBox = document.getElementById('danger-box')
+    const hasDanger = data.flagged || (data.dangerous_commands && data.dangerous_commands.length > 0)
+    if (hasDanger) {
+        const cmds = data.dangerous_commands && data.dangerous_commands.length > 0
+            ? "Dangerous commands detected: " + data.dangerous_commands.join(", ") + ". Double-check before running."
+            : "A potentially destructive command was detected in this fix. Double-check before running."
+        document.getElementById('danger-text').textContent = cmds
+        dangerBox.style.display = 'flex'
+    } else {
+        dangerBox.style.display = 'none'
     }
 
-    // Ask AI
-    async function askAI(event) {
-        event.preventDefault()
+    // Confidence badge (qualitative — no bare percentage)
+    const info = data.confidence_info || { label: 'Needs verification', level: 'low', basis: [] }
+    const badge = document.getElementById('confidence-badge')
+    badge.className = 'confidence-badge ' + info.level
+    const icon = info.level === 'high' ? '🟢' : (info.level === 'medium' ? '🟡' : '🟠')
+    badge.textContent = icon + ' ' + info.label
+    document.getElementById('confidence-basis').textContent = 'Based on: ' + (info.basis || []).join(', ')
 
-        const loading = document.getElementById('loading')
-        const answerBox = document.getElementById('answer-box')
-        const answer = document.getElementById('answer')
-
-        loading.style.display = 'flex'
-        answerBox.style.display = 'none'
-
-        const response = await fetch("/ask", {
-        method: "POST",
-        body: new FormData(document.getElementById("askform"))
+    // Sources
+    const sourcesRow = document.getElementById('sources-row')
+    sourcesRow.innerHTML = ''
+    if (data.sources && data.sources.length > 0) {
+        data.sources.forEach(s => {
+            const tag = document.createElement('span')
+            tag.className = 'source-tag'
+            tag.textContent = '✔ ' + s
+            sourcesRow.appendChild(tag)
         })
-        const data = await response.json()
+    }
+
+    // Fix
+    document.getElementById('answer').textContent = data.fix || ''
+
+    // Beginner explanation
+    const beginnerBox = document.getElementById('beginner-box')
+    if (mode === 'beginner' && data.beginner_explanation) {
+        document.getElementById('beginner-text').textContent = data.beginner_explanation
+        beginnerBox.style.display = 'block'
+    } else {
+        beginnerBox.style.display = 'none'
+    }
+
+    // Why / Learn
+    document.getElementById('why-text').textContent = data.why || ''
+    document.getElementById('learn-text').textContent = data.learn || ''
+
+    // Reset votes
+    document.querySelectorAll('.thumb-btn').forEach(b => b.classList.remove('voted'))
+    document.getElementById('feedback-thanks').style.display = 'none'
+
+    // KB link
+    const kbRow = document.getElementById('kb-link-row')
+    if (data.kb_id) {
+        currentKbId = data.kb_id
+        document.getElementById('kb-link').href = '/kb/' + data.kb_id
+        kbRow.style.display = 'block'
+    } else {
+        kbRow.style.display = 'none'
+    }
+
+    if (data.conversation_id) {
+        currentConversationId = data.conversation_id
+    }
+
+    // Auto-expand learning mode sections
+    if (mode === 'learning') {
+        document.querySelectorAll('.collapsible').forEach(el => {
+            el.classList.add('open')
+            el.querySelector('.collapsible-body').classList.add('open')
+        })
+    }
+}
+
+// Main AI call
+async function askAI(event) {
+    event.preventDefault()
+    syncProfile()
+
+    const loading = document.getElementById('loading')
+    const answerBox = document.getElementById('answer-box')
+    const mode = document.getElementById('mode').value
+
+    const messages = [
+        "Analyzing your problem...",
+        "Searching for solutions...",
+        "Building your fix...",
+        "Almost done..."
+    ]
+    let msgIndex = 0
+    document.getElementById('loading-text').textContent = messages[0]
+    const msgInterval = setInterval(() => {
+        msgIndex = (msgIndex + 1) % messages.length
+        document.getElementById('loading-text').textContent = messages[msgIndex]
+    }, 1800)
+
+    loading.style.display = 'flex'
+    answerBox.style.display = 'none'
+    document.getElementById('followup-thread').innerHTML = ''
+    document.getElementById('followup-input').value = ''
+    currentConversationId = null
+
+    const startedAt = performance.now()
+
+    let response, raw
+    try {
+        response = await fetch("/ask", {
+            method: "POST",
+            body: new FormData(document.getElementById("askform"))
+        })
+        raw = await response.text()
+    } catch (e) {
+        clearInterval(msgInterval)
         loading.style.display = 'none'
-        answerBox.style.display = 'block'
-        answer.innerText = data.answer
-        if (data.flagged) {
-        answer.style.border = "1px solid #ff5555"
-        }
-        if (data.kb_id) {
-        answer.insertAdjacentHTML('afterend',
-            `<p style="font-size:12px;color:#888;margin-top:8px;">
-            Saved to <a href="/kb/${data.kb_id}" style="color:#1DB954;" target="_blank">the knowledge base</a>
-            </p>`)
-        }
-
-        // Reset vote buttons
-        document.querySelectorAll('.thumb-btn').forEach(b => b.classList.remove('voted'))
-        document.getElementById('feedback-thanks').style.display = 'none'
+        alert('Could not reach the server. Please try again.')
+        return
     }
 
-    // Copy answer
-    function copyAnswer() {
-        const text = document.getElementById('answer').innerText
-        navigator.clipboard.writeText(text)
-        const btn = document.querySelector('.copy-btn')
-        btn.textContent = 'Copied!'
-        setTimeout(() => btn.textContent = 'Copy', 2000)
+    clearInterval(msgInterval)
+    loading.style.display = 'none'
+
+    let data
+    try {
+        data = JSON.parse(raw)
+    } catch {
+        data = { fix: raw, why: "", learn: "", confidence_info: {label:'Needs verification', level:'low', basis:[]}, sources: [], dangerous_commands: [], beginner_explanation: "" }
     }
 
-    // Vote
-    function vote(btn, type) {
-        document.querySelectorAll('.thumb-btn').forEach(b => b.classList.remove('voted'))
-        btn.classList.add('voted')
-        document.getElementById('feedback-thanks').style.display = 'inline'
+    const elapsedSeconds = Math.max(1, Math.round((performance.now() - startedAt) / 1000))
+    document.getElementById('solve-time').innerHTML =
+        'Time to solution: <strong>' + elapsedSeconds + 's</strong> <span style="color:#333;">·</span> average manual troubleshooting: ~14 min'
+
+    renderAnswer(data, mode)
+    answerBox.style.display = 'block'
+}
+
+// Follow-up: "I tried it, didn't work" continued troubleshooting
+async function sendFollowup() {
+    const input = document.getElementById('followup-input')
+    const message = input.value.trim()
+    if (!message) return
+    if (!currentConversationId) {
+        alert('Ask a question first, then follow up here.')
+        return
     }
+
+    const thread = document.getElementById('followup-thread')
+    const userMsg = document.createElement('div')
+    userMsg.className = 'followup-msg user'
+    userMsg.textContent = 'You: ' + message
+    thread.appendChild(userMsg)
+    input.value = ''
+
+    const pending = document.createElement('div')
+    pending.className = 'followup-msg assistant'
+    pending.textContent = 'Thinking...'
+    thread.appendChild(pending)
+
+    const fd = new FormData()
+    fd.append('conversation_id', currentConversationId)
+    fd.append('message', message)
+
+    let data
+    try {
+        const resp = await fetch('/followup', { method: 'POST', body: fd })
+        data = await resp.json()
+    } catch (e) {
+        pending.textContent = 'Something went wrong reaching the server.'
+        return
+    }
+
+    if (data.error) {
+        pending.textContent = data.error
+        return
+    }
+
+    pending.textContent = data.fix || ''
+    const mode = document.getElementById('mode').value
+    renderAnswer(data, mode)
+}
+
+document.getElementById('followup-input').addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') { e.preventDefault(); sendFollowup() }
+})
 </script>
 
 </body>
