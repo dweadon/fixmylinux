@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" href="/static/imresizer-linux-from-scratch-83.jpg">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
@@ -120,24 +121,35 @@
             color: white;
         }
 
-        @media (max-width: 768px) {
+@media (max-width: 768px) {
 
-            body {
-                padding: 25px 15px;
-            }
+    body {
+        padding: 20px 15px;
+    }
 
-            .header h1 {
-                font-size: 1.7rem;
-            }
+    .header h1 {
+        text-align: center;
+    }
 
-            h2 {
-                font-size: 1.5rem;
-            }
+    .content-card {
+        padding: 16px;
+    }
 
-            .content-card {
-                padding: 18px;
-            }
-        }
+    textarea {
+        min-height: 150px;
+        font-size: 16px;
+    }
+
+    button {
+        width: 100%;
+        padding: 14px;
+    }
+
+    .back-link {
+        display: block;
+        text-align: center;
+    }
+}
 
     </style>
 </head>
